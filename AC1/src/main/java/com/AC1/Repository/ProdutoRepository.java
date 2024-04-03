@@ -1,44 +1,15 @@
 package com.AC1.Repository;
 
-import com.AC1.Models.Produtos;
-import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.AC1.Models.Produto;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 @Repository
-public class ProdutoRepository {
+public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-    @Autowired
-    private EntityManager entityManager;
-
-    @Transactional
-    public Produtos inserir(Produtos produtos){
-        entityManager.merge(produtos);
-        return produtos;
-    }
-
-    @Transactional
-    public Produtos editar(Produtos produtos){
-        entityManager.merge(produtos);
-        return produtos;
-    }
-
-    @Transactional
-    public void excluir(Produtos produtos){
-        entityManager.remove(produtos);
-    }
-
-    public List<Produtos> selecionarTodos(){
-        return entityManager.createQuery("from Produtos", Produtos.class).getResultList();
-    }
-
-    public Produtos selecionarPorId(int id) {
-        return entityManager.createQuery("from Produtos p where p.id = :id", Produtos.class)
-                .setParameter("id", id)
-                .getSingleResult();
-    }
-
+    public List<Produto> findByPrecoMaiorQue(Double valor);
+    public List<Produto> findByPrecoMenorOuIgualQue(Double valor);
+    public List<Produto> findByNome(String nome);
 }
