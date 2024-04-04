@@ -11,8 +11,8 @@ import com.AC1.Models.Categoria;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
-    List<Categoria> findByNome(String nome);
+    List<Categoria> findByNomeStartingWith(String nome);
 
     @Query("SELECT c FROM Categoria c LEFT JOIN FETCH c.produtos WHERE c.id = :id")
-    Categoria findCategoriaByProdutosID(@Param("id") Long id);
+    Categoria findCategoriaWithProdutosById(@Param("id") Long id);
 }
