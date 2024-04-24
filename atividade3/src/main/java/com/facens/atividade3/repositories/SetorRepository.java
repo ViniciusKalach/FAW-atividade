@@ -11,6 +11,6 @@ import com.facens.atividade3.models.Setor;
 @Repository
 public interface SetorRepository extends JpaRepository<Setor, Integer>{
     
-    @Query("SELECT s FROM Setor s LEFT JOIN FETCH s.funcionario")
+    @Query("SELECT s FROM Setor s LEFT JOIN FETCH s.funcionarios")
     List<Setor> findAllSetoroWithFuncionario();
 }

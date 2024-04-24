@@ -70,5 +70,20 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         }).collect(Collectors.toList());
     }
 
+    @Override
+    public List<DadosProjetoDTO> listarProjetoDTOsPorFuncionario(Integer funcionarioId) {
+        Funcionario funcionario = funcionarioRepository.findById(funcionarioId)
+                .orElseThrow(() -> new RegraNegocioException("Funcionário não encontrado"));
+
+        return funcionario.getProjetos().stream().map((Projeto p) -> {
+            return DadosProjetoDTO.builder()
+                    .id(p.getId())
+                    .descricao(p.getDescricao())
+                    .dataInicio(p.getDataInicio())
+                    .dataFim(p.getDataFim())
+                    .funcionarios(p.getFuncionarios())
+                    .build();
+        }).collect(Collectors.toList());
+    }
     
 }

@@ -61,5 +61,22 @@ public class ProjetoServiceImpl implements ProjetoService{
                     .build();
         }).collect(Collectors.toList());
     }
-    
+
+    @Override
+    public List<DadosFuncionarioDTO> listarFuncionarioDTOsPorProjeto(Integer id) {
+        Projeto projeto = projetoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Projeto não encontrado"));
+
+        return projeto.getFuncionarios().stream().map((Funcionario f) -> {
+            return DadosFuncionarioDTO.builder()
+                    .id(f.getId())
+                    .nome(f.getNome())
+                    .setor(
+                            DadosSetorDTO.builder()
+                                    .id(f.getSetor().getId())
+                                    .nome(f.getSetor().getNome())
+                                    .build())
+                    .build();
+        }).collect(Collectors.toList());
+    }
 }

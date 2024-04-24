@@ -14,6 +14,8 @@ public interface ProjetoService {
 
     List<DadosFuncionarioDTO> listarFuncionarioDTOs();
 
+    List<DadosFuncionarioDTO> listarFuncionarioDTOsPorProjeto(Integer id);
+
     /*public void vincularFuncionario(Integer idProjeto, Integer idFuncionario){
         {
             Projeto projeto = projetoRepository.findById(idProjeto)

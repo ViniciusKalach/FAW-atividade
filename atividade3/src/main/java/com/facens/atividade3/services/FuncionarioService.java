@@ -5,7 +5,6 @@ import java.util.List;
 import com.facens.atividade3.dtos.DadosFuncionarioDTO;
 import com.facens.atividade3.dtos.DadosProjetoDTO;
 import com.facens.atividade3.dtos.FuncionarioDTO;
-import com.facens.atividade3.dtos.ProjetoDTO;
 import com.facens.atividade3.models.Funcionario;
 
 public interface FuncionarioService {
@@ -14,4 +13,6 @@ public interface FuncionarioService {
     List<DadosFuncionarioDTO> listarTodos();
 
     List<DadosProjetoDTO> listarProjetoDTOs();
+
+    List<DadosProjetoDTO> listarProjetoDTOsPorFuncionario(Integer funcionarioId);
 }
