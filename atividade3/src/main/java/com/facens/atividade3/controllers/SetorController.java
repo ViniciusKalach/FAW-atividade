@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.facens.atividade3.dtos.DadosSetorDTO;
 import com.facens.atividade3.dtos.SetorDTO;
+import com.facens.atividade3.models.Setor;
 import com.facens.atividade3.services.SetorService;
 
 @RestController
@@ -17,8 +18,8 @@ public class SetorController {
 
     @PostMapping("/adicionar")
     @ResponseStatus(HttpStatus.CREATED)
-    public void adicionar(@RequestBody SetorDTO setorDTO) {
-        setorService.salvar(setorDTO);
+    public Setor adicionar(@RequestBody SetorDTO setorDTO) {
+        return setorService.salvar(setorDTO);
     }
 
     @GetMapping("/{idSetor}")

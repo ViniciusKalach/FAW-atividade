@@ -37,6 +37,6 @@ public class SetorServiceImpl implements SetorService{
         Setor setor = setorRepository.findById(idSetor)
                 .orElseThrow(() -> new RegraNegocioException("Setor não encontrado"));
         
-        return new DadosSetorDTO(setor.getId(), setor.getNome());
+        return new DadosSetorDTO(setor.getId(), setor.getNome(), setor.getFuncionarios());
     }
 }

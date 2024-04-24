@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.facens.atividade3.dtos.DadosFuncionarioDTO;
+import com.facens.atividade3.dtos.DadosProjetoDTO;
 import com.facens.atividade3.dtos.ProjetoDTO;
-import com.facens.atividade3.models.Projeto;
 import com.facens.atividade3.services.ProjetoService;
 
 @RestController
@@ -25,26 +25,24 @@ public class ProjetoController {
         this.projetoService = projetoService;
     }
 
-    @PostMapping()
+    @PostMapping("/adicionar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Projeto adicionar(@RequestBody ProjetoDTO projetoDTO) {
-        return projetoService.salvar(projetoDTO);
-    }
-
-    @GetMapping()
-    public List<DadosFuncionarioDTO> buscarProjetoPorId(Integer id, @RequestBody ProjetoDTO projetoDTO) {
-        return projetoService.listarFuncionarioDTOs();
+    public void adicionar(@RequestBody ProjetoDTO projetoDTO) {
+        projetoService.salvar(projetoDTO);
     }
 
     @GetMapping("/{id}")
+    public List<DadosProjetoDTO> buscarProjetoPorId(@PathVariable Integer id) {
+        return projetoService.listarFuncionarioDTOs();
+    }
+
+    /*@GetMapping("/{id}")
         public List<DadosFuncionarioDTO> buscarProjetoPorId(@PathVariable Integer id) {
         return projetoService.listarFuncionarioDTOsPorProjeto(id);
-}
+    }*/
 
-
-
-    /* @PostMapping("/{idProjeto}/vincular-funcionario/{idFuncionario}")
+    @PostMapping("/{idProjeto}/vincular-funcionario/{idFuncionario}")
     public void vincularFuncionario(@PathVariable Integer idProjeto, @PathVariable Integer idFuncionario) {
         projetoService.vincularFuncionario(idProjeto, idFuncionario);
-    }*/
+    }
 }

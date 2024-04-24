@@ -34,6 +34,11 @@ public class Projeto {
         this.dataFim = dataFim;
     }
 
+    public void adicionarFuncionario(Funcionario funcionario) {
+        this.funcionarios.add(funcionario);
+        funcionario.getProjetos().add(this);
+    }
+
     @Override
     public String toString() {
         return "Projeto [id=" + id + ", descricao=" + descricao + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim
